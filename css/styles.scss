@@ -1,0 +1,297 @@
+@charset "utf-8";
+
+// ------------------
+// Variables
+// ------------------
+
+$color-bg: #d6650f;
+$color-dark: #1e0a01;
+$color-light: #ffffff;
+$color-brown: #612200;
+$color-yellow: #fabc58;
+$color-red: #cf2900;
+$color-red-dark: #ab3c3c;
+$color-btn-bg: #37190d;
+$color-footer: #d7c9bd;
+
+$font-regular: 'firasans_regular', Helvetica, sans-serif;
+$font-bold: 'leaguespartan_bold', Helvetica, sans-serif;
+
+// ------------------
+// Font Face
+// ------------------
+
+@font-face {
+  font-family: 'firasans_regular';
+  src: url('../fonts/firasans-regular-webfont.woff2') format('woff2'),
+       url('../fonts/firasans-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'leaguespartan_bold';
+  src: url('../fonts/leaguespartan-bold-webfont.woff2') format('woff2'),
+       url('../fonts/leaguespartan-bold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+// ------------------
+// Global Styles
+// ------------------
+
+html {
+  box-sizing: border-box;
+  font-size: 1em;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: $font-regular;
+  color: $color-brown;
+  background-color: $color-bg;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-bold;
+  color: $color-light;
+  text-align: center;
+  margin: 5px;
+  padding: 5px;
+}
+
+p {
+  line-height: 1.6;
+  font-weight: bold;
+  color: $color-brown;
+  margin: 10px;
+  padding: 0;
+  text-align: center;
+}
+
+// ------------------
+// Layout Elements
+// ------------------
+
+#wrapper {
+  padding: 20px;
+  max-width: 950px;
+  margin: auto;
+  background-color: #e7e7e7;
+  box-shadow: 0 0 8px 4px rgb(2, 2, 2);
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-color: $color-dark;
+  color: $color-brown;
+  padding: 5px;
+  height: 130px;
+}
+
+footer {
+  background-color: $color-footer;
+  color: $color-brown;
+  padding: 5px;
+  height: 120px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+main {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-flow: row wrap;
+}
+
+// ------------------
+// Images
+// ------------------
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.hangman-icon {
+  img {
+    width: 100%;
+  }
+}
+
+.hangman-image {
+  min-height: 360px;
+  text-align: center;
+  flex-basis: 50%;
+
+  img {
+    display: inline-block;
+    max-width: 100%;
+  }
+}
+
+// ------------------
+// hangman button
+// ------------------
+@mixin hangman-button {
+  font-size: 18px;
+  letter-spacing: 1px;
+  font-weight: 500;
+  background-color: #37190d;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px 30px;
+  margin: 10px;
+  text-transform: uppercase;
+  outline: none;
+  position: relative;
+  box-shadow: 0 6px #ab3c3c;
+  border-radius: 5px;
+  transition: all 0.3s;
+
+  &:hover {
+    box-shadow: 0 4px #fabc58;
+    top: 2px;
+  }
+
+  &:active {
+    box-shadow: 0 0 #fabc58;
+    top: 6px;
+    background-color: #fabc58;
+  }
+}
+
+// ------------------
+//  Letters
+// ------------------
+
+.letters {
+  flex-basis: 50%;
+
+  ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+  }
+
+  li {
+    margin: 5px 10px;
+
+    button {
+      font-size: 18px;
+      letter-spacing: 1px;
+      font-weight: 500;
+      background-color: $color-btn-bg;
+      color: white;
+      border: none;
+      cursor: pointer;
+      padding: 10px 30px;
+      margin: 10px;
+      text-transform: uppercase;
+      outline: none;
+      position: relative;
+      box-shadow: 0 6px $color-red-dark;
+      border-radius: 5px;
+      transition: all 0.3s;
+
+      &:hover {
+        box-shadow: 0 4px $color-yellow;
+        top: 2px;
+      }
+
+      &:active {
+        box-shadow: 0 0 $color-yellow;
+        top: 6px;
+        background-color: $color-yellow;
+      }
+    }
+  }
+}
+
+// ------------------
+// Game Messages
+// ------------------
+
+.game-messages {
+  font-size: 20px;
+  color: $color-red-dark;
+}
+
+// ------------------
+// Blank Spaces
+// ------------------
+
+.blank-spaces {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+
+  > * {
+    min-height: 35px;
+    min-width: 35px;
+    border-bottom: 3px solid $color-red;
+    margin: 5px;
+    font-size: 22px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: flex-end;
+    justify-content: center;
+    text-transform: uppercase;
+  }
+
+  span {
+    display: inline-block;
+    margin: 0 5px;
+    width: 30px;
+    height: 30px;
+    font-size: 1.8rem;
+    text-align: center;
+    border-bottom: 3px solid #333;
+  }
+}
+
+// ------------------
+// Game Mechanics
+// ------------------
+
+.letters li button{
+   @include hangman-button;
+}
+
+.game-mechanics button{
+  @include hangman-button;
+}
+
+// ------------------
+// Media Queries
+// ------------------
+
+@media screen and (max-width: 600px) {
+  .hangman-image img {
+    width: 200px;
+  }
+
+  .blank-spaces span {
+    width: 12px;
+    margin: 0 1px;
+    font-size: 1rem;
+  }
+}
