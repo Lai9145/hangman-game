@@ -178,7 +178,7 @@ $(document).ready(function ()
     }
 
     const $img = $(".hangman-image img");
-    const newSrc = "../final project/images/hangman" + imageNum + ".png";
+    const newSrc = "images/hangman" + imageNum + ".png";
 
     $img.fadeOut(200, function ()
     {
@@ -191,7 +191,7 @@ $(document).ready(function ()
    function resetImages() 
    {
     incorrectGuesses = 0;
-    $(".hangman-image img").attr("src", "../final project/images/hangman0.png");
+    $(".hangman-image img").attr("src", "images/hangman0.png");
   }
 
    /*
